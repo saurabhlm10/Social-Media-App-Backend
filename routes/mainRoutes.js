@@ -1,9 +1,18 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
 
-const { home } = require('../controllers/mainControllers')
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-router.get('/', home)
+const { home } = require("../controllers/mainControllers");
+const { addPost } = require("../controllers/postControllers/addPost");
+const { getPost } = require("../controllers/postControllers/getPost");
+const { getPosts } = require("../controllers/postControllers/getPosts");
 
-module.exports = router
+router.get("/api/", home);
+router.get("/api/getposts", getPosts);
+router.post("/api/addpost", upload.single("image"), addPost);
+router.get("/api/getpost/:postId", getPost);
 
+module.exports = router;
