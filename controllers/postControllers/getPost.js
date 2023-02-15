@@ -11,11 +11,7 @@ const awsSecretKey = process.env.AWS_SECRET_KEY;
 exports.getPost = async (req, res) => {
   const {postId} = req.params
 
-  const newPostId = postId.slice(1,)
-
-  // 63d69e141f8bc71dba74a1f6
-
-  const post = await Post.findById(newPostId);
+  const post = await Post.findById(postId);
 
   const getObjectParams = {
     Bucket: awsBucketName,
