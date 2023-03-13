@@ -7,7 +7,15 @@ const postSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String
-    }
+    },
+    userId: {
+        type: String,
+        require: [true, 'userId is required'],
+    },
+    username: {
+        type: String,
+        require: [true, 'username is required'],
+    },
 })
 
 postSchema.set('timestamps', true)

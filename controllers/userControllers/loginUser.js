@@ -7,6 +7,9 @@ exports.loginUser = async (req, res) => {
         // collect info 
         const {username, password} = req.body
 
+        // console.log(username)
+        // console.log(password)
+
         // validate
         if(!(username && password)){
             return res.status(401).json({
@@ -52,12 +55,7 @@ exports.loginUser = async (req, res) => {
 
         user.token = token
 
-        const options = {
-            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-            httpOnly: true
-        }
-
-        return res.status(201).cookie('token', token, options).json({
+        return res.status(201).json({
             success: true,
             token,
             user

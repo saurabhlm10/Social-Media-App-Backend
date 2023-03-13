@@ -15,6 +15,8 @@ exports.addPost = async (req, res) => {
   try {
     const file = req.file;
 
+    const {userId, username} = req.body
+
     const randomImageName = (bytes = 32) =>
       crypto.randomBytes(bytes).toString("hex");
 
@@ -31,7 +33,7 @@ exports.addPost = async (req, res) => {
 
     await s3Client.send(command);
 
-    const post = await Post.create({ imageName });
+    const post = await Post.create({ imageName, userId, username });
 
     res.status(201).json({
       success: true,

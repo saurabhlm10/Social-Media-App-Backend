@@ -17,6 +17,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    followers: {
+        type: [String],
+    },
+    following: {
+        type: [String],
+    },
     token: {
         type: String,
         trim: true,

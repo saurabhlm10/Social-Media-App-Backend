@@ -61,7 +61,6 @@ exports.createUser = async (req, res) => {
       res.status(201).json(user);
 
 
-
     } catch (error) {
         console.log(error)
     }
