@@ -15,15 +15,17 @@ const { createUser } = require("../controllers/userControllers/createUser");
 const { getUser } = require("../controllers/userControllers/getUser");
 const { loginUser } = require("../controllers/userControllers/loginUser");
 
-router.get("/api/", home);
-router.get("/api/getposts/:followersArray", getPosts);
-router.get("/api/getuserposts/:username", getUserPosts);
-router.post("/api/addpost", upload.single("image"), addPost);
-router.get("/api/getpost/:postId", getPost);
-router.put('/api/addremovefollower/:username/:foreignUsername', addRemoveFollower)
+const auth = require('../middleware/auth')
+
+router.get("/api/", auth, home);
+router.get("/api/getposts/:followersArray",auth, getPosts);
+router.get("/api/getuserposts/:username", auth, getUserPosts);
+router.post("/api/addpost", upload.single("image"), auth, addPost);
+router.get("/api/getpost/:postId", auth, getPost);
+router.put('/api/addremovefollower/:username/:foreignUsername', auth, addRemoveFollower)
+router.get('/api/getuser/:username', auth, getUser)
 
 router.post('/api/createuser', createUser)
 router.post('/api/loginuser', loginUser)
-router.get('/api/getuser/:username', getUser)
 
 module.exports = router;

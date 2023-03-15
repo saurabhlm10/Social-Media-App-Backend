@@ -7,9 +7,6 @@ exports.loginUser = async (req, res) => {
         // collect info 
         const {username, password} = req.body
 
-        // console.log(username)
-        // console.log(password)
-
         // validate
         if(!(username && password)){
             return res.status(401).json({
