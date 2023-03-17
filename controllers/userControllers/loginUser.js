@@ -44,7 +44,7 @@ exports.loginUser = async (req, res) => {
             },
             process.env.SECRET,
             {
-                expiresIn: '2h'
+                expiresIn: '24h'
             }
         )
 

@@ -7,6 +7,7 @@ const upload = multer({ storage: storage });
 
 const { home } = require("../controllers/mainControllers");
 const { addPost } = require("../controllers/postControllers/addPost");
+const { deletePost } = require("../controllers/postControllers/deletePost");
 const { getPost } = require("../controllers/postControllers/getPost");
 const { getPosts } = require("../controllers/postControllers/getPosts");
 const { getUserPosts } = require("../controllers/postControllers/getUserPosts");
@@ -21,6 +22,7 @@ router.get("/api/", auth, home);
 router.get("/api/getposts/:followersArray",auth, getPosts);
 router.get("/api/getuserposts/:username", auth, getUserPosts);
 router.post("/api/addpost", upload.single("image"), auth, addPost);
+router.delete('/api/deletepost/:postId/:imageName', auth, deletePost)
 router.get("/api/getpost/:postId", auth, getPost);
 router.put('/api/addremovefollower/:username/:foreignUsername', auth, addRemoveFollower)
 router.get('/api/getuser/:username', auth, getUser)
