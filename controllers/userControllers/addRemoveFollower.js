@@ -17,7 +17,7 @@ const removeFromFollowingList = async (username, foreignUsername) => {
 }
 
 const addToFollowersList = async (username, foreignUsername) => {
-    const addToFollowersListResponse = await User.findOneAndUpdate({ username: foreignUsername }, { $push: { followers: username } }, {
+    const addToFollowersListResponse = await User.findOneAndUpdate({ username: foreignUsername }, { $addToSet: { followers: username } }, {
         new: true
     })
 
@@ -25,7 +25,7 @@ const addToFollowersList = async (username, foreignUsername) => {
 }
 
 const addToFollowingList = async (username, foreignUsername) => {
-    const addToFollowingListResponse = await User.findOneAndUpdate({ username }, { $push: { following: foreignUsername } }, {
+    const addToFollowingListResponse = await User.findOneAndUpdate({ username }, { $addToSet: { following: foreignUsername } }, {
         new: true
     })
 

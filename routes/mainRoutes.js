@@ -16,7 +16,8 @@ const { createUser } = require("../controllers/userControllers/createUser");
 const { getUser } = require("../controllers/userControllers/getUser");
 const { loginUser } = require("../controllers/userControllers/loginUser");
 
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const { likePost } = require("../controllers/postControllers/likePost");
 
 router.get("/api/", auth, home);
 router.get("/api/getposts/:followersArray",auth, getPosts);
@@ -26,6 +27,7 @@ router.delete('/api/deletepost/:postId/:imageName', auth, deletePost)
 router.get("/api/getpost/:postId", auth, getPost);
 router.put('/api/addremovefollower/:username/:foreignUsername', auth, addRemoveFollower)
 router.get('/api/getuser/:username', auth, getUser)
+router.put('/api/likepost/:username/:postId', likePost)
 
 router.post('/api/createuser', createUser)
 router.post('/api/loginuser', loginUser)

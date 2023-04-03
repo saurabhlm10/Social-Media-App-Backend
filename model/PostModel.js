@@ -3,10 +3,11 @@ const mongoose = require('mongoose')
 const postSchema = new mongoose.Schema({
     imageName: {
         type: String,
-        require: [true, 'Image is required'],
+        require: [true, 'imageName is required'],
     },
     imageUrl: {
-        type: String
+        type: String,
+        require: [true, 'imageUrl is required'],
     },
     userId: {
         type: String,
@@ -16,6 +17,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         require: [true, 'username is required'],
     },
+    likes:{
+        type: [String],
+        default: []
+    }
 })
 
 postSchema.set('timestamps', true)
