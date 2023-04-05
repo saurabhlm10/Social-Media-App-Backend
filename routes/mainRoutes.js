@@ -18,6 +18,8 @@ const { loginUser } = require("../controllers/userControllers/loginUser");
 
 const auth = require('../middleware/auth');
 const { likePost } = require("../controllers/postControllers/likePost");
+const { addComment } = require("../controllers/postControllers/addComment");
+const { deleteComment } = require("../controllers/postControllers/deleteComment");
 
 router.get("/api/", auth, home);
 router.get("/api/getposts/:followersArray",auth, getPosts);
@@ -27,7 +29,9 @@ router.delete('/api/deletepost/:postId/:imageName', auth, deletePost)
 router.get("/api/getpost/:postId", auth, getPost);
 router.put('/api/addremovefollower/:username/:foreignUsername', auth, addRemoveFollower)
 router.get('/api/getuser/:username', auth, getUser)
-router.put('/api/likepost/:username/:postId', likePost)
+router.put('/api/likepost/:username/:postId', auth, likePost)
+router.post('/api/addcomment/:username/:postId', auth, addComment)
+router.delete('/api/deletecomment/:commentId/:postId', auth, deleteComment)
 
 router.post('/api/createuser', createUser)
 router.post('/api/loginuser', loginUser)

@@ -17,8 +17,25 @@ const postSchema = new mongoose.Schema({
         type: String,
         require: [true, 'username is required'],
     },
-    likes:{
+    likes: {
         type: [String],
+        default: []
+    },
+    comments: {
+        type: [{
+            comment: {
+                type: String,
+                required: [true, 'comment is required']
+            },
+            username: {
+                type: String,
+                required: [true, 'username is required']
+            },
+            created_at: {
+                type: Date,
+                default: Date.now
+            }
+        }],
         default: []
     }
 })
