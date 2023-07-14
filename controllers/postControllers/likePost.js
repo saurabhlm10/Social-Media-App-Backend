@@ -4,11 +4,6 @@ exports.likePost = async (req, res) => {
     try {
         const { username, postId } = req.params
 
-        console.log('runnedd')
-
-        console.log(username)
-        console.log(postId)
-
         const { likes } = await PostModel.findById({ _id: postId })
 
         let likePostResponse;
@@ -33,8 +28,6 @@ exports.likePost = async (req, res) => {
             message = 'added like successfully'
 
         }
-
-        console.log(likePostResponse)
 
         res.status(201).json({
             success: true,

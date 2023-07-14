@@ -8,8 +8,6 @@ exports.deletePost = async (req, res) => {
     try {
         const { postId, imageName } = req.params
 
-        console.log(imageName)
-
         const params = {
             Bucket: bucketName,
             Key: imageName
@@ -20,8 +18,6 @@ exports.deletePost = async (req, res) => {
         s3Client.send(command)
 
         const deleteResponse = await Post.findByIdAndDelete(postId)
-
-        console.log(deleteResponse)
 
         res.status(201).json({
             message: 'Post Deleted Successfully'

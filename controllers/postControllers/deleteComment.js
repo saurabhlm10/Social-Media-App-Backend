@@ -4,9 +4,6 @@ exports.deleteComment = async (req, res) => {
     try {
         const { commentId, postId } = req.params
 
-        console.log(commentId)
-        console.log(postId)
-
         const response = await PostModel.findByIdAndUpdate(postId, {
             $pull: {
                 comments: { _id: commentId }
